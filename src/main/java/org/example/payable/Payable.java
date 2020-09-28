@@ -1,4 +1,4 @@
-package org.example.payble;
+package org.example.payable;
 
 /**
  * Payable.
@@ -8,10 +8,10 @@ public interface Payable {
 
   /**
    * getLicensePlateNumber.
-   * Gets the license plate number.
+   * Gets the licence plate number.
    * @return String. The license plate number.
    */
-  String getLicensePlateNumber();
+  String getLicencePlateNumber();
 
   /**
    * getCost.

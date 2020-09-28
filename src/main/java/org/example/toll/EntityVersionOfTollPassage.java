@@ -1,32 +1,93 @@
 package org.example.toll;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public final class TollPassage {
-  private final int TOLL_PLAZA_ID;
-  private final String PASSING_VEHICLE_LICENSE_PLATE_NUMBER;
-  private final int COST;
-  private final LocalTime TIME_OF_PASSING;
-  private final LocalDate DATE_OF_PASSING;
+@Entity
+@Table(name = "TollPassage")
+public final class EntityVersionOfTollPassage implements Serializable {
 
-  public TollPassage(int TOLL_PLAZA_ID, String PASSING_VEHICLE_LICENSE_PLATE_NUMBER, int COST, LocalTime TIME_OF_PASSING, LocalDate DATE_OF_PASSING) {
+  @Id
+  @Column(name = "tollPlazaId", unique = true)
+  private int tollPlazaId;
+
+  @Column(name = "vehicleLicencePlateNumber" )
+  private String passingVehicleLicencePlateNumber;
+
+  @Column(name = "cost")
+  private int cost;
+
+  @Column(name = "timeOfPassing")
+  private LocalTime timeOfPassing;
+
+  @Column(name = "dateOfPassing")
+  private LocalDate dateOfPassing;
+
+  public EntityVersionOfTollPassage() {
+  }
+
+  public EntityVersionOfTollPassage(int tollPlazaId, String passingVehicleLicencePlateNumber, int cost, LocalTime timeOfPassing, LocalDate dateOfPassing) {
     //Only stood whole number in the task description, but a negative id does not ake any sense.
-    if(TOLL_PLAZA_ID < 1) throw new IllegalArgumentException("Invalid toll plaza ID");
-    this.TOLL_PLAZA_ID = TOLL_PLAZA_ID;
-    this.PASSING_VEHICLE_LICENSE_PLATE_NUMBER = PASSING_VEHICLE_LICENSE_PLATE_NUMBER;
-    this.COST = COST;
-    this.TIME_OF_PASSING = TIME_OF_PASSING;
-    this.DATE_OF_PASSING = DATE_OF_PASSING;
+    if(tollPlazaId < 1) throw new IllegalArgumentException("Invalid toll plaza ID");
+    this.tollPlazaId = tollPlazaId;
+    this.passingVehicleLicencePlateNumber = passingVehicleLicencePlateNumber;
+    this.cost = cost;
+    this.timeOfPassing = timeOfPassing;
+    this.dateOfPassing = dateOfPassing;
+  }
+
+  public int getTollPlazaId() {
+    return tollPlazaId;
+  }
+
+  public void setTollPlazaId(int tollPlazaId) {
+    this.tollPlazaId = tollPlazaId;
+  }
+
+  public String getPassingVehicleLicencePlateNumber() {
+    return passingVehicleLicencePlateNumber;
+  }
+
+  public void setPassingVehicleLicencePlateNumber(String passingVehicleLicencePlateNumber) {
+    this.passingVehicleLicencePlateNumber = passingVehicleLicencePlateNumber;
+  }
+
+  public int getCost() {
+    return cost;
+  }
+
+  public void setCost(int cost) {
+    this.cost = cost;
+  }
+
+  public LocalTime getTimeOfPassing() {
+    return timeOfPassing;
+  }
+
+  public void setTimeOfPassing(LocalTime timeOfPassing) {
+    this.timeOfPassing = timeOfPassing;
+  }
+
+  public LocalDate getDateOfPassing() {
+    return dateOfPassing;
+  }
+
+  public void setDateOfPassing(LocalDate dateOfPassing) {
+    this.dateOfPassing = dateOfPassing;
   }
 
   @Override
   public String toString() {
     return "TollPassage:" +
-        "\nTOLL_PLAZA_ID: " + TOLL_PLAZA_ID +
-        "\nPASSING_VEHICLE_LICENSE_PLATE_NUMBER: " + PASSING_VEHICLE_LICENSE_PLATE_NUMBER +
-        "\nCOST: " + COST +
-        "\nTIME_OF_PASSING: " + TIME_OF_PASSING +
-        "\nDATE_OF_PASSING: " + DATE_OF_PASSING;
+        "\nTOLL_PLAZA_ID: " + tollPlazaId +
+        "\nPASSING_VEHICLE_LICENSE_PLATE_NUMBER: " + passingVehicleLicencePlateNumber +
+        "\nCOST: " + cost +
+        "\nTIME_OF_PASSING: " + timeOfPassing +
+        "\nDATE_OF_PASSING: " + dateOfPassing;
   }
 }
